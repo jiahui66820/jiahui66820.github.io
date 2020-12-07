@@ -31,7 +31,7 @@
 <meta property="og:description" content="CSS 变量CSS变量解决的问题构建大型站点时，CSS的数量是非常庞大的。例如配色方案会在项目中大量、重复使用，后期维护会面对可维护性的挑战。 123456.title &amp;#123;  color: #999;&amp;#125;.text &amp;#123;  color: #999;&amp;#125;  为了解决这个问题，比如可以采用less、sass等预处理器。 但是CSS变量具有天然的优势。不同于预处理器，必">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-12-07T07:40:13.879Z">
-<meta property="article:modified_time" content="2020-12-07T08:32:33.311Z">
+<meta property="article:modified_time" content="2020-12-07T10:30:26.532Z">
 <meta property="article:author" content="李嘉卉">
 <meta name="twitter:card" content="summary">
 
@@ -146,7 +146,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           Table of Contents
@@ -159,6 +159,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <section class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#CSS-%E5%8F%98%E9%87%8F"><span class="nav-number">1.</span> <span class="nav-text">CSS 变量</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#CSS%E5%8F%98%E9%87%8F%E8%A7%A3%E5%86%B3%E7%9A%84%E9%97%AE%E9%A2%98"><span class="nav-number">1.1.</span> <span class="nav-text">CSS变量解决的问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CSS%E5%8F%98%E9%87%8F%E8%AF%AD%E6%B3%95"><span class="nav-number">1.2.</span> <span class="nav-text">CSS变量语法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CSS%E5%8F%98%E9%87%8F%E4%BD%9C%E7%94%A8%E5%9F%9F"><span class="nav-number">1.3.</span> <span class="nav-text">CSS变量作用域</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%A8%E5%B1%80%E4%BD%9C%E7%94%A8%E5%9F%9F"><span class="nav-number">1.3.1.</span> <span class="nav-text">全局作用域</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B1%80%E9%83%A8%E4%BD%9C%E7%94%A8%E5%9F%9F"><span class="nav-number">1.3.2.</span> <span class="nav-text">局部作用域</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9C%A8JavaScript%E4%B8%AD%E4%BD%BF%E7%94%A8CSS%E5%8F%98%E9%87%8F"><span class="nav-number">1.4.</span> <span class="nav-text">在JavaScript中使用CSS变量</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%96%E5%9B%9EHTML%E8%A1%8C%E5%86%85%E6%A0%B7%E5%BC%8F"><span class="nav-number">1.4.1.</span> <span class="nav-text">取回HTML行内样式</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%BE%E4%BE%8B"><span class="nav-number">2.</span> <span class="nav-text">举例</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E4%BD%BF%E7%94%A8%E2%80%9CCSS%E5%8F%98%E9%87%8F%E7%A7%8D%E5%AD%90%E8%AE%A1%E6%95%B0%E5%99%A8%E2%80%9D%E6%89%A9%E5%B1%95CSS%E5%8A%A8%E7%94%BB%E6%9B%B4%E5%A4%9A%E5%8F%AF%E8%83%BD%E6%80%A7"><span class="nav-number">2.1.</span> <span class="nav-text">1. 使用“CSS变量种子计数器”扩展CSS动画更多可能性</span></a></li></ol></li></ol></div>
         </section>
         <!--/noindex-->
 
@@ -236,7 +237,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2020-12-07 15:40:13 / Modified: 16:32:33" itemprop="dateCreated datePublished" datetime="2020-12-07T15:40:13+08:00">2020-12-07</time>
+      <time title="Created: 2020-12-07 15:40:13 / Modified: 18:30:26" itemprop="dateCreated datePublished" datetime="2020-12-07T15:40:13+08:00">2020-12-07</time>
     </span>
 
   
@@ -278,14 +279,17 @@
 </li>
 </ol>
 <ul>
-<li>变量声明中，属性值不能直接进行数学运算，可以借助<code>calc()</code>函数进行运算    </li>
+<li><p>变量声明中，属性值不能直接进行数学运算，可以借助<code>calc()</code>函数进行运算    </p>
+ <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">--font-size</span>: 12<span class="selector-tag">px</span> * 2; <span class="comment">/*❌错误的方式*/</span></span><br><span class="line"><span class="selector-tag">--font-size</span>: <span class="selector-tag">calc</span>(12<span class="selector-tag">px</span> * 2); <span class="comment">/*⭕️正确的方式*/</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p> ⚠️：不能在一个没有单位的值后直接加上单位，正确的拼接方式是借用calc()函数，进行计算</p>
+ <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-pseudo">:root</span> &#123;</span><br><span class="line">  <span class="attribute">--value</span>: <span class="number">5</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="built_in">var</span>(--value) px; <span class="comment">/*❌不会给出5px*/</span></span><br><span class="line">  <span class="attribute">padding</span>: <span class="built_in">calc</span>(var(--value) * <span class="number">1px</span>); <span class="comment">/*⭕️5px*/</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+</li>
 </ul>
-<pre><code> <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">--font-size</span>: 12<span class="selector-tag">px</span> * 2; <span class="comment">/*❌错误的方式*/</span></span><br><span class="line"><span class="selector-tag">--font-size</span>: <span class="selector-tag">calc</span>(12<span class="selector-tag">px</span> * 2); <span class="comment">/*⭕️正确的方式*/</span></span><br></pre></td></tr></table></figure>
-
-  ⚠️：不能在一个没有单位的值后直接加上单位，正确的拼接方式是借用calc()函数，进行计算
-
- <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-pseudo">:root</span> &#123;</span><br><span class="line">  <span class="attribute">--value</span>: <span class="number">5</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="built_in">var</span>(--value) px; <span class="comment">/*❌不会给出5px*/</span></span><br><span class="line">  <span class="attribute">padding</span>: <span class="built_in">calc</span>(var(--value) * <span class="number">1px</span>); <span class="comment">/*⭕️5px*/</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></code></pre>
-<p>​         </p>
 <ul>
 <li><p>CSS变量不同于预处理器变量，CSS变量只能用于属性值</p>
 <p>例如，<code>less</code>中我们可以这样声明</p>
@@ -304,9 +308,12 @@
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">background-colour</span>: <span class="selector-tag">var</span>(<span class="selector-tag">--variable-name</span>);</span><br></pre></td></tr></table></figure>
 
 <p>CSS变量的完整引用语法为<code>var(&lt;variable-name&gt;,[&lt;declaration-value&gt;]?)</code>。如果我们使用的变量没有定义时，则使用后面的值作为元素的属性值。</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">p</span> &#123;</span><br><span class="line">  <span class="attribute">color</span>: <span class="built_in">var</span>(--color, pink);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<iframe height="265" style="width: 100%;" scrolling="no" title="fallback value" src="https://codepen.io/jiahui66820/embed/ZEpOEwE?height=265&theme-id=dark&default-tab=css,result" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a target="_blank" rel="noopener" href='https://codepen.io/jiahui66820/pen/ZEpOEwE'>fallback value</a> by jiahui66820
+  (<a target="_blank" rel="noopener" href='https://codepen.io/jiahui66820'>@jiahui66820</a>) on <a target="_blank" rel="noopener" href='https://codepen.io'>CodePen</a>.
+</iframe>
 
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>粉红色<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
 
 </li>
 </ol>
