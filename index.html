@@ -237,7 +237,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2020-12-08 15:38:41" itemprop="dateModified" datetime="2020-12-08T15:38:41+08:00">2020-12-08</time>
+        <time title="Modified: 2020-12-08 19:31:01" itemprop="dateModified" datetime="2020-12-08T19:31:01+08:00">2020-12-08</time>
       </span>
 
   
@@ -340,7 +340,7 @@
   (<a target="_blank" rel="noopener" href='https://codepen.io/jiahui66820'>@jiahui66820</a>) on <a target="_blank" rel="noopener" href='https://codepen.io'>CodePen</a>.
 </iframe>
 
-<p>不仅普通的CSS属性可以在CSS动画的关键帧中运行，CSS变量也可以在动画关键帧中运行：</p>
+<p>不仅普通的CSS属性可以在CSS动画的关键帧中运行，<strong>CSS变量也可以在动画关键帧中运行</strong>：</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@keyframes</span> var &#123;</span><br><span class="line">  33% &#123; <span class="attribute">--someVar</span>: <span class="number">33%</span>; &#125;</span><br><span class="line">  66% &#123; <span class="attribute">--someVar</span>: <span class="number">66%</span>; &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>💡：如果某一个CSS属性值是基于这个<code>--someVar</code>变量构成的，即使这个属性值本身不支持CSS动画，只要让每一个百分比值的间隙足够小，也可以实现一个平滑的动画效果。</p>
@@ -354,6 +354,13 @@
   (<a target="_blank" rel="noopener" href='https://codepen.io/jiahui66820'>@jiahui66820</a>) on <a target="_blank" rel="noopener" href='https://codepen.io'>CodePen</a>.
 </iframe>
 
+<p>这样原本不支持CSS动画的渐变背景也有了动画变换效果。</p>
+<h3 id="密集型背景图动画"><a href="#密集型背景图动画" class="headerlink" title="密集型背景图动画"></a>密集型背景图动画</h3><iframe height="265" style="width: 100%;" scrolling="no" title="粒子计数器-密集型背景图形动画" src="https://codepen.io/jiahui66820/embed/wvzKWXV?height=265&theme-id=dark&default-tab=css,result" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a target="_blank" rel="noopener" href='https://codepen.io/jiahui66820/pen/wvzKWXV'>粒子计数器-密集型背景图形动画</a> by jiahui66820
+  (<a target="_blank" rel="noopener" href='https://codepen.io/jiahui66820'>@jiahui66820</a>) on <a target="_blank" rel="noopener" href='https://codepen.io'>CodePen</a>.
+</iframe>
+
+<p>这里用到了径向渐变，只要把径向边缘使用<code>var(--seed)</code>种子变量表示就可以了</p>
 
       
     </div>
