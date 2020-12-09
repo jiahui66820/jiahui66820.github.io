@@ -237,7 +237,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2020-12-09 10:19:02" itemprop="dateModified" datetime="2020-12-09T10:19:02+08:00">2020-12-09</time>
+        <time title="Modified: 2020-12-09 12:36:44" itemprop="dateModified" datetime="2020-12-09T12:36:44+08:00">2020-12-09</time>
       </span>
 
   
@@ -297,6 +297,9 @@
 
 <p>但是换成CSS变量，下面这中用法会抛出不合法的属性名异常</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-pseudo">:root</span>&#123;</span><br><span class="line">  <span class="attribute">--bgc</span>: background-colour;</span><br><span class="line">  <span class="attribute">--colour</span>: red;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line">  var(--bgc):var(--colour); /*❌CSS变量不能用于属性名中*/</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>CSS变量可以声明在HTML行内的style属性中</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">style</span>=<span class="string">&quot;--colour: red&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 
 
@@ -324,13 +327,27 @@
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">h2</span> &#123;</span><br><span class="line">  <span class="attribute">--h2-colour</span>: <span class="number">#999</span>;</span><br><span class="line">  <span class="attribute">colour</span>: <span class="built_in">var</span>(--h2-colour);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">h3</span> &#123;</span><br><span class="line">  <span class="comment">/*无效*/</span></span><br><span class="line">  <span class="attribute">colour</span>: <span class="built_in">var</span>(--h2-colour);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h2 id="在JavaScript中使用CSS变量"><a href="#在JavaScript中使用CSS变量" class="headerlink" title="在JavaScript中使用CSS变量"></a>在JavaScript中使用CSS变量</h2><p>CSS变量带来的提升不仅是代码的可读性和可维护性。更重要的是在JavaScript中可以取到CSS变量。</p>
-<h3 id="取回HTML行内样式"><a href="#取回HTML行内样式" class="headerlink" title="取回HTML行内样式"></a>取回HTML行内样式</h3><iframe height="265" style="width: 100%;" scrolling="no" title="覆盖根样式" src="https://codepen.io/jiahui66820/embed/PoGZOjB?height=265&theme-id=dark&default-tab=css,result" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
-  See the Pen <a target="_blank" rel="noopener" href='https://codepen.io/jiahui66820/pen/PoGZOjB'>覆盖根样式</a> by jiahui66820
+<h3 id="从HTML行内样式取回变量"><a href="#从HTML行内样式取回变量" class="headerlink" title="从HTML行内样式取回变量"></a>从HTML行内样式取回变量</h3><p>如果在行内声明了CSS变量</p>
+  <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">style</span>=<span class="string">&quot;--colour: red&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>可以在js中使用<code>getPropertyValue()</code>取回CSS变量值</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//取回&lt;p&gt;元素</span></span><br><span class="line"><span class="keyword">const</span> element = <span class="built_in">document</span>.querySelector(<span class="string">&#x27;p&#x27;</span>);</span><br><span class="line"><span class="comment">//取回CSS变量 “--colour”</span></span><br><span class="line">element.style.getPropertyValue(<span class="string">&#x27;colour&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<h3 id="在JS中设置CSS变量"><a href="#在JS中设置CSS变量" class="headerlink" title="在JS中设置CSS变量"></a>在JS中设置CSS变量</h3><p>可以使用<code>setProperty</code>更改CSS变量</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//取回&lt;p&gt;元素</span></span><br><span class="line"><span class="keyword">const</span> element = <span class="built_in">document</span>.querySelector(<span class="string">&#x27;p&#x27;</span>);</span><br><span class="line"><span class="comment">//把“--colour”设置为“blue”</span></span><br><span class="line">element.style.setProperty(<span class="string">&#x27;--colour&#x27;</span>, <span class="string">&#x27;blue&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+
+
+<iframe height="265" style="width: 100%;" scrolling="no" title="js设置css变量" src="https://codepen.io/jiahui66820/embed/dypXePR?height=265&theme-id=dark&default-tab=js,result" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a target="_blank" rel="noopener" href='https://codepen.io/jiahui66820/pen/dypXePR'>js设置css变量</a> by jiahui66820
   (<a target="_blank" rel="noopener" href='https://codepen.io/jiahui66820'>@jiahui66820</a>) on <a target="_blank" rel="noopener" href='https://codepen.io'>CodePen</a>.
 </iframe>
-## 浏览器支持
 
-<p>除了在状况外的IE浏览器，其余浏览器全部支持</p>
+
+
+
+
+<h2 id="浏览器支持"><a href="#浏览器支持" class="headerlink" title="浏览器支持"></a>浏览器支持</h2><p>除了在状况外的IE浏览器，其余浏览器全部支持</p>
 <ul>
 <li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties#Browser_compatibility">CSS变量浏览器支持情况</a></li>
 </ul>
