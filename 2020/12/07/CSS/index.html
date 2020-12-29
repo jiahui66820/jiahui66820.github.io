@@ -31,7 +31,7 @@
 <meta property="og:description" content="CSS 变量CSS变量解决的问题构建大型站点时，CSS的数量是非常庞大的。例如配色方案会在项目中大量、重复使用，后期维护会面对可维护性的挑战。 123456.title &amp;#123;  color: #999;&amp;#125;.text &amp;#123;  color: #999;&amp;#125;  为了解决这个问题，比如可以采用less、sass等预处理器。 但是CSS变量具有天然的优势。不同于预处理器，必">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-12-07T07:40:13.879Z">
-<meta property="article:modified_time" content="2020-12-09T04:36:44.200Z">
+<meta property="article:modified_time" content="2020-12-29T08:41:24.597Z">
 <meta property="article:author" content="李嘉卉">
 <meta name="twitter:card" content="summary">
 
@@ -243,7 +243,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2020-12-09 12:36:44" itemprop="dateModified" datetime="2020-12-09T12:36:44+08:00">2020-12-09</time>
+        <time title="Modified: 2020-12-29 16:41:24" itemprop="dateModified" datetime="2020-12-29T16:41:24+08:00">2020-12-29</time>
       </span>
 
   
@@ -383,13 +383,12 @@
 </iframe>
 
 <p>这样原本不支持CSS动画的渐变背景也有了动画变换效果。</p>
-<h3 id="密集型背景图动画"><a href="#密集型背景图动画" class="headerlink" title="密集型背景图动画"></a>密集型背景图动画</h3><iframe height="265" style="width: 100%;" scrolling="no" title="粒子计数器-密集型背景图形动画" src="https://codepen.io/jiahui66820/embed/wvzKWXV?height=265&theme-id=dark&default-tab=css,result" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+<h3 id="密集型背景图动画"><a href="#密集型背景图动画" class="headerlink" title="密集型背景图动画"></a>密集型背景图动画</h3><p>配合“变量种子计数器”，我们很容易去实现过去很难实现的密集形动画效果，例如下例中国内地这张平铺的圆圈放大效果。</p>
+<iframe height="265" style="width: 100%;" scrolling="no" title="粒子计数器-密集型背景图形动画" src="https://codepen.io/jiahui66820/embed/wvzKWXV?height=265&theme-id=dark&default-tab=css,result" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
   See the Pen <a target="_blank" rel="noopener" href='https://codepen.io/jiahui66820/pen/wvzKWXV'>粒子计数器-密集型背景图形动画</a> by jiahui66820
   (<a target="_blank" rel="noopener" href='https://codepen.io/jiahui66820'>@jiahui66820</a>) on <a target="_blank" rel="noopener" href='https://codepen.io'>CodePen</a>.
 </iframe>
-
-<p>这里用到了径向渐变，只要把径向边缘使用<code>var(--seed)</code>种子变量表示就可以了</p>
-
+这里用到了径向渐变，只要把径向边缘使用`var(--seed)`种子变量表示就可以了。
     </div>
 
     
