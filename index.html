@@ -237,7 +237,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2020-12-29 18:25:08" itemprop="dateModified" datetime="2020-12-29T18:25:08+08:00">2020-12-29</time>
+        <time title="Modified: 2021-01-11 01:09:00" itemprop="dateModified" datetime="2021-01-11T01:09:00+08:00">2021-01-11</time>
       </span>
 
   
@@ -254,7 +254,7 @@
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.title</span> &#123;</span><br><span class="line">  <span class="attribute">color</span>: <span class="number">#999</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.text</span> &#123;</span><br><span class="line">  <span class="attribute">color</span>: <span class="number">#999</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>为了解决这个问题，比如可以采用<code>less</code>、<code>sass</code>等预处理器。</p>
-<p>但是<strong>CSS变量具有天然的优势</strong>。不同于预处理器，必须最终编译成普通的CSS代码，CSS变量可以被浏览器识别解析，==甚至可以用javascript访问或重新赋值。==</p>
+<p>但是<strong>CSS变量具有天然的优势</strong>。不同于预处理器，必须最终编译成普通的CSS代码，CSS变量可以被浏览器识别解析，甚至可以用javascript访问或重新赋值。</p>
 <p>w3c规范中这样描述CSS变量</p>
 <blockquote>
 <p>使用CSS变量，给看似随机的值加上富有信息的名字，从而使得大文件更容易阅读和编辑，更少出错。因为，你只需要在自定义属性中改变一次值，所有应用了这个变量的地方都会自动跟着一起改变。</p>
@@ -270,7 +270,7 @@
 <p>在变量前加上破折号，<code>--</code></p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">--variable-name</span>: <span class="selector-id">#369</span>;</span><br></pre></td></tr></table></figure>
 
-<p>但是变量名中不能包含<code>$</code>，<code>[]</code>，<code>^</code>，<code>%</code>等字符。普通字符局限在‘数字<code>[0-9]</code>’，’字母<code>[a-zA-Z]</code>‘，’’下划线<code>_</code>‘和’短横线<code>-</code>‘的组合。</p>
+<p>但是变量名只能由普通字符组成，不能包含<code>$</code>，<code>[]</code>，<code>^</code>，<code>%</code>等特殊字符。普通字符局限在数字<code>[0-9]</code>，字母<code>[a-zA-Z]</code>，下划线<code>_</code>和短横线<code>-</code>的组合。</p>
 <p>变量名可以为中文、日文和韩文</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">--</span>深蓝色: <span class="selector-id">#369</span>;</span><br></pre></td></tr></table></figure>
 
@@ -293,14 +293,10 @@
 <ul>
 <li><p>CSS变量不同于预处理器变量，CSS变量只能用于属性值</p>
 <p>例如，<code>less</code>中我们可以这样声明</p>
-<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">@bgc:</span> background-colour;</span><br><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">200px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">200px</span>;</span><br><span class="line">  <span class="attribute">@&#123;bgc&#125;</span>: red;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">@bgc:</span> background-color;</span><br><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">200px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">200px</span>;</span><br><span class="line">  <span class="attribute">@&#123;bgc&#125;</span>: red;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>但是换成CSS变量，下面这中用法会抛出不合法的属性名异常</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-pseudo">:root</span>&#123;</span><br><span class="line">  <span class="attribute">--bgc</span>: background-colour;</span><br><span class="line">  <span class="attribute">--colour</span>: red;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line">  var(--bgc):var(--colour); /*❌CSS变量不能用于属性名中*/</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>CSS变量可以声明在HTML行内的style属性中</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">style</span>=<span class="string">&quot;--colour: red&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-pseudo">:root</span>&#123;</span><br><span class="line">  <span class="attribute">--bgc</span>: background-color;</span><br><span class="line">  <span class="attribute">--color</span>: red;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line">  var(--bgc):var(--color); /*❌CSS变量不能用于属性名中*/</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
 </li>
@@ -308,7 +304,7 @@
 <ol start="2">
 <li><p>CSS变量的引用</p>
 <p>想要使用变量，一般将变量名传到<code>var()</code>函数中</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">background-colour</span>: <span class="selector-tag">var</span>(<span class="selector-tag">--variable-name</span>);</span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">background-color</span>: <span class="selector-tag">var</span>(<span class="selector-tag">--variable-name</span>);</span><br></pre></td></tr></table></figure>
 
 <p>CSS变量的完整引用语法为<code>var(&lt;variable-name&gt;,[&lt;declaration-value&gt;]?)</code>。如果我们使用的变量没有定义时，则使用后面的值作为元素的属性值。</p>
 <iframe height="265" style="width: 100%;" scrolling="no" title="fallback value" src="https://codepen.io/jiahui66820/embed/ZEpOEwE?height=265&theme-id=dark&default-tab=css,result" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
@@ -316,34 +312,77 @@
   (<a target="_blank" rel="noopener" href='https://codepen.io/jiahui66820'>@jiahui66820</a>) on <a target="_blank" rel="noopener" href='https://codepen.io'>CodePen</a>.
 </iframe>
 
-
-
 </li>
 </ol>
+<p>无论是变量的定义还是使用，都只能在声明块<code>&#123;&#125;</code>中，例如下面这样是无效的</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">--</span>深蓝色: <span class="selector-id">#269</span>; <span class="comment">/*❌变量定义需在声明块中*/</span></span><br><span class="line"><span class="selector-tag">body</span> &#123;</span><br><span class="line">  <span class="attribute">background-color</span>: <span class="built_in">var</span>(--深蓝色);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
 <h2 id="CSS变量作用域"><a href="#CSS变量作用域" class="headerlink" title="CSS变量作用域"></a>CSS变量作用域</h2><h3 id="全局作用域"><a href="#全局作用域" class="headerlink" title="全局作用域"></a>全局作用域</h3><p>想要在全局声明CSS变量，需要先将它在<code>:root&#123;&#125;</code>中定义</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-pseudo">:root</span> &#123;</span><br><span class="line">  <span class="attribute">--primary-colour</span>: <span class="number">#000</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">h1</span> &#123;</span><br><span class="line">  <span class="attribute">colour</span>: <span class="built_in">var</span>(--primary-colour);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-pseudo">:root</span> &#123;</span><br><span class="line">  <span class="attribute">--primary-color</span>: <span class="number">#000</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">h1</span> &#123;</span><br><span class="line">  <span class="attribute">color</span>: <span class="built_in">var</span>(--primary-color);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h3 id="局部作用域"><a href="#局部作用域" class="headerlink" title="局部作用域"></a>局部作用域</h3><p>CSS变量就像JS中的变量，每个类名或者花括号就像一个<code>function</code>，里面的变量只有上下文可以获取。</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">h2</span> &#123;</span><br><span class="line">  <span class="attribute">--h2-colour</span>: <span class="number">#999</span>;</span><br><span class="line">  <span class="attribute">colour</span>: <span class="built_in">var</span>(--h2-colour);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">h3</span> &#123;</span><br><span class="line">  <span class="comment">/*无效*/</span></span><br><span class="line">  <span class="attribute">colour</span>: <span class="built_in">var</span>(--h2-colour);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">h2</span> &#123;</span><br><span class="line">  <span class="attribute">--h2-color</span>: <span class="number">#999</span>;</span><br><span class="line">  <span class="attribute">color</span>: <span class="built_in">var</span>(--h2-color);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">h3</span> &#123;</span><br><span class="line">  <span class="comment">/*无效*/</span></span><br><span class="line">  <span class="attribute">color</span>: <span class="built_in">var</span>(--h2-color);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+<p>CSS变量定义需要摆脱Sass/Less等预编译工具语法先入为主的语法影响。我们把CSS的原生变量理解为一种CSS属性，就可以对其权重和应用规则要容易理解得多。</p>
+<iframe height="265" style="width: 100%;" scrolling="no" title="css变量应用规则" src="https://codepen.io/jiahui66820/embed/VwKxmyy?height=265&theme-id=dark&default-tab=html,result" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a target="_blank" rel="noopener" href='https://codepen.io/jiahui66820/pen/VwKxmyy'>css变量应用规则</a> by jiahui66820
+  (<a target="_blank" rel="noopener" href='https://codepen.io/jiahui66820'>@jiahui66820</a>) on <a target="_blank" rel="noopener" href='https://codepen.io'>CodePen</a>.
+</iframe>
+
+<p>从上例中可以获得以下信息：</p>
+<ol>
+<li>变量也跟着CSS选择器走的，如果变量所在的选择器和使用变量的元素没有交集，是没有效果的。例如<code>#alert</code>定义的变量，只有<code>id</code>为<code>alert</code>的元素才能享有。如果想变量全局使用，可以设置在<code>:root</code>选择器上。</li>
+<li>当存在多个同名的变量时，变量的覆盖规则由CSS选择器的权重决定的，但并无<code>!important</code>这种用法，因为没有必要，<code>!important</code>设计初衷是干掉JS的<code>style</code>设置，但对于变量的定义则没有这样的需求。</li>
+</ol>
 <h2 id="在JavaScript中使用CSS变量"><a href="#在JavaScript中使用CSS变量" class="headerlink" title="在JavaScript中使用CSS变量"></a>在JavaScript中使用CSS变量</h2><p>CSS变量带来的提升不仅是代码的可读性和可维护性。更重要的是在JavaScript中可以取到CSS变量。</p>
 <h3 id="从HTML行内样式取回变量"><a href="#从HTML行内样式取回变量" class="headerlink" title="从HTML行内样式取回变量"></a>从HTML行内样式取回变量</h3><p>如果在行内声明了CSS变量</p>
-  <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">style</span>=<span class="string">&quot;--colour: red&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+  <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">style</span>=<span class="string">&quot;--color: red&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>可以在js中使用<code>getPropertyValue()</code>取回CSS变量值</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//取回&lt;p&gt;元素</span></span><br><span class="line"><span class="keyword">const</span> element = <span class="built_in">document</span>.querySelector(<span class="string">&#x27;p&#x27;</span>);</span><br><span class="line"><span class="comment">//取回CSS变量 “--colour”</span></span><br><span class="line">element.style.getPropertyValue(<span class="string">&#x27;colour&#x27;</span>);</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//取回&lt;p&gt;元素</span></span><br><span class="line"><span class="keyword">const</span> element = <span class="built_in">document</span>.querySelector(<span class="string">&#x27;p&#x27;</span>);</span><br><span class="line"><span class="comment">//取回CSS变量 “--color”</span></span><br><span class="line">element.style.getPropertyValue(<span class="string">&#x27;color&#x27;</span>);</span><br></pre></td></tr></table></figure>
 
 <h3 id="在JS中设置CSS变量"><a href="#在JS中设置CSS变量" class="headerlink" title="在JS中设置CSS变量"></a>在JS中设置CSS变量</h3><p>可以使用<code>setProperty</code>更改CSS变量</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//取回&lt;p&gt;元素</span></span><br><span class="line"><span class="keyword">const</span> element = <span class="built_in">document</span>.querySelector(<span class="string">&#x27;p&#x27;</span>);</span><br><span class="line"><span class="comment">//把“--colour”设置为“blue”</span></span><br><span class="line">element.style.setProperty(<span class="string">&#x27;--colour&#x27;</span>, <span class="string">&#x27;blue&#x27;</span>);</span><br></pre></td></tr></table></figure>
-
-
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//取回&lt;p&gt;元素</span></span><br><span class="line"><span class="keyword">const</span> element = <span class="built_in">document</span>.querySelector(<span class="string">&#x27;p&#x27;</span>);</span><br><span class="line"><span class="comment">//把“--color”设置为“blue”</span></span><br><span class="line">element.style.setProperty(<span class="string">&#x27;--color&#x27;</span>, <span class="string">&#x27;blue&#x27;</span>);</span><br></pre></td></tr></table></figure>
 
 <iframe height="265" style="width: 100%;" scrolling="no" title="js设置css变量" src="https://codepen.io/jiahui66820/embed/dypXePR?height=265&theme-id=dark&default-tab=js,result" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
   See the Pen <a target="_blank" rel="noopener" href='https://codepen.io/jiahui66820/pen/dypXePR'>js设置css变量</a> by jiahui66820
   (<a target="_blank" rel="noopener" href='https://codepen.io/jiahui66820'>@jiahui66820</a>) on <a target="_blank" rel="noopener" href='https://codepen.io'>CodePen</a>.
 </iframe>
 
+<h3 id="JS就这样沦为工具人"><a href="#JS就这样沦为工具人" class="headerlink" title="JS就这样沦为工具人"></a>JS就这样沦为工具人</h3><p><img src="https://tva1.sinaimg.cn/large/008eGmZEly1gme4lnwlfej30k807qdgg.jpg"></p>
+<p>过去点击提示，点击切换等效果都需要JS针对特定的元素进行样式设置，现在有了CSS变量，我们只需要一段通用的全局JS就可以了，然后JS玩耍自己应该玩耍的，其他效果由CSS处理。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@description </span>点击页面任意位置，标记坐标位置</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="built_in">document</span>.addEventListener(<span class="string">&#x27;mousedown&#x27;</span>, <span class="function"><span class="keyword">function</span> (<span class="params">event</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> target = event.target;</span><br><span class="line">    <span class="keyword">var</span> body = <span class="built_in">document</span>.body;</span><br><span class="line">    <span class="keyword">var</span> html = <span class="built_in">document</span>.documentElement;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 设置自定义属性值</span></span><br><span class="line">    body.style.setProperty(<span class="string">&#x27;--pagex&#x27;</span>, event.pageX);</span><br><span class="line">    body.style.setProperty(<span class="string">&#x27;--pagey&#x27;</span>, event.pageY);</span><br><span class="line"></span><br><span class="line">    html.style.setProperty(<span class="string">&#x27;--clientx&#x27;</span>, event.clientX);</span><br><span class="line">    html.style.setProperty(<span class="string">&#x27;--clienty&#x27;</span>, event.clientY);</span><br><span class="line">    html.style.setProperty(<span class="string">&#x27;--scrolly&#x27;</span>, <span class="built_in">window</span>.pageYOffset);</span><br><span class="line"></span><br><span class="line">    target.style.setProperty(<span class="string">&#x27;--offsetx&#x27;</span>, event.offsetX);</span><br><span class="line">    target.style.setProperty(<span class="string">&#x27;--offsety&#x27;</span>, event.offsetY);</span><br><span class="line">    target.parentElement.style.setProperty(<span class="string">&#x27;--target-width&#x27;</span>, target.clientWidth);</span><br><span class="line">    target.parentElement.style.setProperty(<span class="string">&#x27;--target-height&#x27;</span>, target.clientHeight);</span><br><span class="line">    target.parentElement.style.setProperty(<span class="string">&#x27;--target-left&#x27;</span>, target.offsetLeft);</span><br><span class="line">    target.parentElement.style.setProperty(<span class="string">&#x27;--target-top&#x27;</span>, target.offsetTop);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 
+
+
+<p><img src="https://tva1.sinaimg.cn/large/008eGmZEly1gme5u6rnjej30rs0iugmx.jpg"></p>
+<p>可以看到JavaScript再也不用负责任何与交互行为相关的逻辑，直接成为工具人，一个单纯的传递点击位置坐标，以及点击元素偏移和尺寸信息的工具人。</p>
+<h3 id="举例"><a href="#举例" class="headerlink" title="举例"></a>举例</h3><h4 id="1-点击文本页面出现文字提示效果"><a href="#1-点击文本页面出现文字提示效果" class="headerlink" title="1. 点击文本页面出现文字提示效果"></a>1. 点击文本页面出现文字提示效果</h4><p>这个例子中，点击文本页面任意位置都会出现文字提示效果的，就是上面那段万能工具人JS加下面这段CSS实现的</p>
+<p class="codepen" data-height="265" data-theme-id="dark" data-default-tab="css,result" data-user="jiahui66820" data-slug-hash="BaLxRPb" style="height: 265px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="点击页面后出现文字">
+  <span>See the Pen <a target="_blank" rel="noopener" href="https://codepen.io/jiahui66820/pen/BaLxRPb">
+  点击页面后出现文字</a> by jiahui66820 (<a target="_blank" rel="noopener" href="https://codepen.io/jiahui66820">@jiahui66820</a>)
+  on <a target="_blank" rel="noopener" href="https://codepen.io">CodePen</a>.</span>
+</p>
+<script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
+
+<h4 id="2-切换tab时，下划线变化"><a href="#2-切换tab时，下划线变化" class="headerlink" title="2. 切换tab时，下划线变化"></a>2. 切换tab时，下划线变化</h4><p>如下例所示，tab变化时，下划线跟着滑动，并且尺寸还跟着变化的，以前开发及户都是借助JS去查询对应的DOM元素，然后设置宽高和位置实现的交互效果。</p>
+<p>现在有了工具人JS，只需要一段CSS就可以搞定了，</p>
+<p class="codepen" data-height="265" data-theme-id="dark" data-default-tab="js,result" data-user="jiahui66820" data-slug-hash="oNzdZxv" style="height: 265px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="切换tab时下划线变化">
+  <span>See the Pen <a target="_blank" rel="noopener" href="https://codepen.io/jiahui66820/pen/oNzdZxv">
+  切换tab时下划线变化</a> by jiahui66820 (<a target="_blank" rel="noopener" href="https://codepen.io/jiahui66820">@jiahui66820</a>)
+  on <a target="_blank" rel="noopener" href="https://codepen.io">CodePen</a>.</span>
+</p>
+<script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
+
+<h4 id="3-鼠标跟随效果"><a href="#3-鼠标跟随效果" class="headerlink" title="3. 鼠标跟随效果"></a>3. 鼠标跟随效果</h4><p>JS不仅可以传递点击位置的坐标，也可以传递鼠标移动的坐标，实现简单的鼠标跟随效果</p>
+<p class="codepen" data-height="265" data-theme-id="dark" data-default-tab="js,result" data-user="jiahui66820" data-slug-hash="XWjYZOd" style="height: 265px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="鼠标跟随效果">
+  <span>See the Pen <a target="_blank" rel="noopener" href="https://codepen.io/jiahui66820/pen/XWjYZOd">
+  鼠标跟随效果</a> by jiahui66820 (<a target="_blank" rel="noopener" href="https://codepen.io/jiahui66820">@jiahui66820</a>)
+  on <a target="_blank" rel="noopener" href="https://codepen.io">CodePen</a>.</span>
+</p>
+<script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
 
 
 
@@ -351,7 +390,7 @@
 <ul>
 <li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties#Browser_compatibility">CSS变量浏览器支持情况</a></li>
 </ul>
-<h1 id="举例"><a href="#举例" class="headerlink" title="举例"></a>举例</h1><h2 id="1-使用“CSS变量种子计数器”扩展CSS动画更多可能性"><a href="#1-使用“CSS变量种子计数器”扩展CSS动画更多可能性" class="headerlink" title="1. 使用“CSS变量种子计数器”扩展CSS动画更多可能性"></a>1. 使用“CSS变量种子计数器”扩展CSS动画更多可能性</h2><p>不是所有的CSS属性都可以使用<code>animation</code>属性实现动画效果，最典型的例子就是背景图<code>background-image</code>渐变。典型的渐变由角度、颜色位置组成，例如</p>
+<h1 id="CSS变量的更多拓展"><a href="#CSS变量的更多拓展" class="headerlink" title="CSS变量的更多拓展"></a>CSS变量的更多拓展</h1><h2 id="使用“CSS变量种子计数器”扩展CSS动画更多可能性"><a href="#使用“CSS变量种子计数器”扩展CSS动画更多可能性" class="headerlink" title="使用“CSS变量种子计数器”扩展CSS动画更多可能性"></a>使用“CSS变量种子计数器”扩展CSS动画更多可能性</h2><p>不是所有的CSS属性都可以使用<code>animation</code>属性实现动画效果，最典型的例子就是背景图<code>background-image</code>渐变。典型的渐变由角度、颜色位置组成，例如</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.gradient</span> &#123;</span><br><span class="line">    <span class="attribute">background-image</span>: <span class="built_in">linear-gradient</span>(<span class="number">45deg</span>, red <span class="number">50%</span>, blue <span class="number">50%</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>无论角度（<code>45deg</code>），颜色（<code>red</code>,<code>blue</code>）还是位置（<code>50%</code>）单独作为属性都是可以动画过渡的，但是合在一起作为渐变背景的时候，是无法产生过渡效果的，因为<code>background-image</code>的语义是图片。</p>
@@ -377,14 +416,13 @@
 </iframe>
 
 <p>这样原本不支持CSS动画的渐变背景也有了动画变换效果。</p>
-<h3 id="密集型背景图动画"><a href="#密集型背景图动画" class="headerlink" title="密集型背景图动画"></a>密集型背景图动画</h3><p>配合“变量种子计数器”，我们很容易去实现过去很难实现的密集形动画效果，例如下例中国内地这张平铺的圆圈放大效果。</p>
+<h3 id="密集型背景图动画"><a href="#密集型背景图动画" class="headerlink" title="密集型背景图动画"></a>密集型背景图动画</h3><p>配合“变量种子计数器”，我们很容易去实现过去很难实现的密集形动画效果，例如下例中的平铺的圆圈放大效果。</p>
 <iframe height="265" style="width: 100%;" scrolling="no" title="粒子计数器-密集型背景图形动画" src="https://codepen.io/jiahui66820/embed/wvzKWXV?height=265&theme-id=dark&default-tab=css,result" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
   See the Pen <a target="_blank" rel="noopener" href='https://codepen.io/jiahui66820/pen/wvzKWXV'>粒子计数器-密集型背景图形动画</a> by jiahui66820
   (<a target="_blank" rel="noopener" href='https://codepen.io/jiahui66820'>@jiahui66820</a>) on <a target="_blank" rel="noopener" href='https://codepen.io'>CodePen</a>.
 </iframe>
 这里用到了径向渐变，只要把径向边缘使用`var(--seed)`种子变量表示就可以了。
 
-<p>ajsifoj </p>
 
       
     </div>
@@ -435,7 +473,7 @@
 
 <div class="copyright">
   &copy; 
-  <span itemprop="copyrightYear">2020</span>
+  <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
